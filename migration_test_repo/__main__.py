@@ -45,7 +45,7 @@ class Utils(object):
         schema_file = args.arguments[0]
         try:
             migrate.SchemaModule(schema_file).import_module_for_migration()
-        except MigratorError as e:
+        except migrate.MigratorError as e:
             raise ValueError("cannot import: '{}'\n{}".format(schema_file, e))
         rv = "successfully imported: '{}'".format(schema_file)
         print(rv)

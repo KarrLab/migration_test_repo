@@ -1,0 +1,116 @@
+""" Code for creating configuration files in this repo
+
+:Author: Arthur Goldberg <Arthur.Goldberg@mssm.edu>
+:Date: 2019-03-21
+:Copyright: 2019, Karr Lab
+:License: MIT
+"""
+
+import argparse
+import os
+from obj_model import migrate
+import obj_model
+from obj_model.utils import set_git_repo_metadata_from_path
+from migration_test_repo import core
+
+
+# todo: move or copy validate_schema_changes_file, make_schema_changes_template and make_automated_migration_config_file creation to
+# obj_model/migrate.py so they can be used by programmers doing migration
+class Utils(object):
+
+    @staticmethod
+    def make_schema_changes_template(parser, args):
+        this_git_repo = migrate.GitRepo(os.path.dirname(__file__), search_parent_directories=True)
+        schema_changes = migrate.SchemaChanges(git_repo=this_git_repo)
+        return schema_changes.make_template(verbose=True)
+
+    @staticmethod
+    def validate_schema_changes_file(parser, args):
+        # todo: if no argument provided, validate all schema_changes_files
+        if not args.arguments:
+            parser.error("'validate_schema_changes_file' command requires a filename argument")
+        filename = args.arguments[0]
+        this_git_repo = migrate.GitRepo(os.path.dirname(__file__), search_parent_directories=True)
+        schema_changes_file = os.path.join(this_git_repo.migrations_dir(), filename)
+        errors = migrate.SchemaChanges.validate(migrate.SchemaChanges.load(schema_changes_file))
+        if errors:
+            raise ValueError("schema changes file '{}' does not validate:\n{}".format(schema_changes_file, errors))
+        print("validate schema changes file: '{}'".format(schema_changes_file))
+        return errors
+
+    @staticmethod
+    def validate_schema(parser, args):
+        if not args.arguments:
+            parser.error("'validate_schema' command requires a filename argument")
+        schema_file = args.arguments[0]
+        try:
+            migrate.SchemaModule(schema_file).import_module_for_migration()
+        except MigratorError as e:
+            raise ValueError("cannot import: '{}'\n{}".format(schema_file, e))
+        rv = "successfully imported: '{}'".format(schema_file)
+        print(rv)
+        return rv
+
+    @staticmethod
+    def make_data_file(parser, args):
+        if not args.arguments:
+            parser.error("'make_data_file' command requires a filename argument")
+        filename = args.arguments[0]
+        if not filename.endswith('.xlsx'):
+            filename = filename + '.xlsx'
+
+        # make a few Models
+        ref_1 = core.Reference(id='ref_1', published=True)
+        ref_2 = core.Reference(id='ref_2', published=False)
+        test_1 = core.Test(
+            id='test_1',
+            name='example test_1',
+            existing_attr=1,
+            references=[ref_1, ref_2]
+        )
+
+        # make a git metadata Model
+        git_metadata = core.GitMetadata()
+        set_git_repo_metadata_from_path(git_metadata)
+
+        fixtures_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'tests', 'fixtures'))
+        fixture_file = os.path.join(fixtures_path, filename)
+        obj_model.io.Writer().run(fixture_file, [test_1, git_metadata],
+            models=[core.GitMetadata, core.Test, core.Reference])
+        print("Wrote obj_model data file: {}".format(fixture_file))
+        return fixture_file
+
+    @staticmethod
+    def make_automated_migration_config_file(parser, args):
+        this_git_repo = migrate.GitRepo(os.path.dirname(__file__), search_parent_directories=True)
+        automated_migration_config_file = migrate.AutomatedMigration.make_template_config_file(
+            this_git_repo, 'migration_test_repo')
+        print("Wrote automated migration config file: {}".format(automated_migration_config_file))
+        return automated_migration_config_file
+
+    @staticmethod
+    def not_supported(parser, args):
+        parser.error("command '{}' is not supported".format(args.command))
+
+def main(parser, args):
+    exec_map = dict(
+        make_schema_changes_template=Utils.make_schema_changes_template,
+        validate_schema_changes_file=Utils.validate_schema_changes_file,
+        validate_schema=Utils.validate_schema,
+        make_data_file=Utils.make_data_file,
+        make_automated_migration_config_file=Utils.make_automated_migration_config_file
+    )
+    if args.command not in exec_map:
+        parser.error("'{}' not a known command".format(args.command))
+    fun = exec_map[args.command]
+    return fun(parser, args)
+
+if __name__ == '__main__':  # pragma: no cover
+    parser = argparse.ArgumentParser(description='manage configuration files in this repo')
+    parser.add_argument('command', choices=['make_schema_changes_template', 'validate_schema_changes_file',
+        'validate_schema', 'make_data_file', 'make_automated_migration_config_file'],
+        help='operation to execute')
+    # todo: describe each command
+    parser.add_argument('arguments', nargs='*', help='arguments for the file being made')
+    args = parser.parse_args()
+    main(parser, args)

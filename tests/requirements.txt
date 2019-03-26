@@ -1,0 +1,1 @@
+capturer # to capture standard output in tests

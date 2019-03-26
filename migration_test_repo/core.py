@@ -25,14 +25,14 @@ _GIT_METADATA = (GitMetadata, ('url', 'branch', 'revision'))
 class Test(obj_model.Model):
     id = SlugAttribute()
     name = StringAttribute(default='test')
-    existing_attr = IntegerAttribute(default=3)
-    references = ManyToManyAttribute('Reference', related_name='tests')
+    migrated_attr = IntegerAttribute(default=3)
+    references = ManyToManyAttribute('NewReference', related_name='tests')
 
     class Meta(obj_model.Model.Meta):
-        attribute_order = ('id', 'name', 'existing_attr')
+        attribute_order = ('id', 'name', 'migrated_attr')
 
 
-class Reference(obj_model.Model):
+class NewReference(obj_model.Model):
     id = SlugAttribute()
     published = BooleanAttribute()
 

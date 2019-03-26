@@ -19,7 +19,7 @@ class TestCore(unittest.TestCase):
         test_1 = core.Test(
             id='test_1',
             name='example test_1',
-            existing_attr=1,
+            migrated_attr=1,
             references=[ref_1, ref_2]
         )
         test_2 = core.Test(
@@ -29,7 +29,7 @@ class TestCore(unittest.TestCase):
         self.assertEqual(ref_1.id, 'ref_1')
         self.assertTrue(ref_1.published)
         self.assertEqual(ref_1, test_1.references[0])
-        self.assertEqual(test_2.existing_attr, 3)
+        self.assertEqual(test_2.migrated_attr, 3)
 
     def test_git_metadata(self):
         metadata_class, metadata_attrs = core._GIT_METADATA

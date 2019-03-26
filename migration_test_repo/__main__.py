@@ -60,12 +60,12 @@ class Utils(object):
             filename = filename + '.xlsx'
 
         # make a few Models
-        ref_1 = core.Reference(id='ref_1', published=True)
-        ref_2 = core.Reference(id='ref_2', published=False)
+        ref_1 = core.NewReference(id='ref_1', published=True)
+        ref_2 = core.NewReference(id='ref_2', published=False)
         test_1 = core.Test(
             id='test_1',
             name='example test_1',
-            existing_attr=1,
+            migrated_attr=1,
             references=[ref_1, ref_2]
         )
 
@@ -76,7 +76,7 @@ class Utils(object):
         fixtures_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'tests', 'fixtures'))
         fixture_file = os.path.join(fixtures_path, filename)
         obj_model.io.Writer().run(fixture_file, [test_1, git_metadata],
-            models=[core.GitMetadata, core.Test, core.Reference])
+            models=[core.GitMetadata, core.Test, core.NewReference])
         print("Wrote obj_model data file: {}".format(fixture_file))
         return fixture_file
 

@@ -53,6 +53,7 @@ class TestMain(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 main(parser, args)
 
+        # todo: reuse
         '''
         args = Namespace(arguments=[self.good_schema_changes_file], command='validate_schema_changes_file')
         with capturer.CaptureOutput(relay=False) as capture_output:

@@ -35,7 +35,7 @@ class Utils(object):
         errors = migrate.SchemaChanges.validate(migrate.SchemaChanges.load(schema_changes_file))
         if errors:
             raise ValueError("schema changes file '{}' does not validate:\n{}".format(schema_changes_file, errors))
-        print("validate schema changes file: '{}'".format(schema_changes_file))
+        print("validated schema changes file: '{}'".format(schema_changes_file))
         return errors
 
     @staticmethod

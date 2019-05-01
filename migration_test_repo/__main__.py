@@ -65,7 +65,7 @@ class Utils(object):
         test_1 = core.Test(
             id='test_1',
             name='example test_1',
-            migrated_attr=1,
+            existing_attr=1,
             references=[ref_1, ref_2]
         )
 

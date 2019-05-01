@@ -14,12 +14,12 @@ from obj_model.utils import set_git_repo_metadata_from_path
 class TestCore(unittest.TestCase):
 
     def test_make_models(self):
-        ref_1 = core.Reference(id='ref_1', published=True)
-        ref_2 = core.Reference(id='ref_2', published=False)
+        ref_1 = core.NewReference(id='ref_1', published=True)
+        ref_2 = core.NewReference(id='ref_2', published=False)
         test_1 = core.Test(
             id='test_1',
             name='example test_1',
-            migrated_attr=1,
+            existing_attr=1,
             references=[ref_1, ref_2]
         )
         test_2 = core.Test(
@@ -29,7 +29,7 @@ class TestCore(unittest.TestCase):
         self.assertEqual(ref_1.id, 'ref_1')
         self.assertTrue(ref_1.published)
         self.assertEqual(ref_1, test_1.references[0])
-        self.assertEqual(test_2.migrated_attr, 3)
+        self.assertEqual(test_2.existing_attr, 3)
 
     def test_git_metadata(self):
         metadata_class, metadata_attrs = core._GIT_METADATA

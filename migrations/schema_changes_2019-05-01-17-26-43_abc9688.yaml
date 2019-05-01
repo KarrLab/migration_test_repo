@@ -1,0 +1,8 @@
+# schema changes file
+# stored in 'schema_changes_2019-05-01-17-26-43_abc9688.yaml'
+
+commit_hash: abc9688c3e6d672b587d816a57ac760e37121636
+renamed_attributes: [[[Test, migrated_attr], [Test, existing_attr]]]
+renamed_models: [[NewReference, Reference]]
+transformations_file: ''
+

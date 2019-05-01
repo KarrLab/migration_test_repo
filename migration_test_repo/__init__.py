@@ -5,5 +5,5 @@ with open(pkg_resources.resource_filename('migration_test_repo', 'VERSION'), 'r'
     __version__ = file.read().strip()
 
 # API
-from .core import GitMetadata, Test, NewReference
+from .core import GitMetadata, Test, Reference
 

@@ -14,8 +14,8 @@ from obj_model.utils import set_git_repo_metadata_from_path
 class TestCore(unittest.TestCase):
 
     def test_make_models(self):
-        ref_1 = core.NewReference(id='ref_1', published=True)
-        ref_2 = core.NewReference(id='ref_2', published=False)
+        ref_1 = core.Reference(id='ref_1', published=True)
+        ref_2 = core.Reference(id='ref_2', published=False)
         test_1 = core.Test(
             id='test_1',
             name='example test_1',

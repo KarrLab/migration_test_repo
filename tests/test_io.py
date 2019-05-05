@@ -18,7 +18,7 @@ class TestIO(unittest.TestCase):
     def test_read_data_file_git_metadata(self):
         
         git_metadata = core._GIT_METADATA
-        # todo: code in migrate to put git_metadata in a NamedTuple, and global for _GIT_METADATA
+        # todo: code in migrate to put git_metadata in a NamedTuple
         metadata_model_type = git_metadata[0]
         _, _, revision_attr = git_metadata[1]
 

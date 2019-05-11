@@ -19,12 +19,10 @@ class TestMain(unittest.TestCase):
 
     def setUp(self):
         repo_root = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
-        '''
         self.good_schema_changes_file = os.path.join(repo_root,
-            'migrations', 'schema_changes_2019-03-23-17-43-25_095bca3.yaml')
+            'migrations', 'schema_changes_2019-03-26-20-16-45_820a5d1.yaml')
         self.bad_schema_changes_file = os.path.join(repo_root,
-            'tests', 'fixtures', 'bad_schema_changes_2019-03-23.yaml')
-        '''
+            'tests', 'fixtures', 'schema_changes_2019-03-26_820a5d1.yaml')
 
     def test_main(self):
         parser = argparse.ArgumentParser()
@@ -50,11 +48,8 @@ class TestMain(unittest.TestCase):
 
         args = Namespace(arguments=[], command='validate_schema_changes_file')
         with capturer.CaptureOutput(relay=False) as capture_output:
-            with self.assertRaises(SystemExit):
-                main(parser, args)
+            main(parser, args)
 
-        # todo: reuse
-        '''
         args = Namespace(arguments=[self.good_schema_changes_file], command='validate_schema_changes_file')
         with capturer.CaptureOutput(relay=False) as capture_output:
             errors = main(parser, args)
@@ -63,7 +58,6 @@ class TestMain(unittest.TestCase):
         args = Namespace(arguments=[self.bad_schema_changes_file], command='validate_schema_changes_file')
         with self.assertRaises(ValueError):
             main(parser, args)
-        '''
 
         # test validate_schema
         args = Namespace(arguments=[], command='validate_schema')

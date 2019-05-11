@@ -9,6 +9,7 @@
 import argparse
 import os
 from obj_model import migrate
+from obj_model.migrate import SchemaChanges
 import obj_model
 from obj_model.utils import set_git_repo_metadata_from_path
 from migration_test_repo import core
@@ -21,22 +22,27 @@ class Utils(object):
     @staticmethod
     def make_schema_changes_template(parser, args):
         this_git_repo = migrate.GitRepo(os.path.dirname(__file__), search_parent_directories=True)
-        schema_changes = migrate.SchemaChanges(git_repo=this_git_repo)
+        schema_changes = SchemaChanges(git_repo=this_git_repo)
         return schema_changes.make_template(verbose=True)
 
     @staticmethod
     def validate_schema_changes_file(parser, args):
-        # todo: if no argument provided, validate all schema_changes_files
-        if not args.arguments:
-            parser.error("'validate_schema_changes_file' command requires a filename argument")
-        filename = args.arguments[0]
+        # if no argument provided, then validate all schema_changes_files
         this_git_repo = migrate.GitRepo(os.path.dirname(__file__), search_parent_directories=True)
-        schema_changes_file = os.path.join(this_git_repo.migrations_dir(), filename)
-        errors = migrate.SchemaChanges.validate(migrate.SchemaChanges.load(schema_changes_file))
-        if errors:
-            raise ValueError("schema changes file '{}' does not validate:\n{}".format(schema_changes_file, errors))
-        print("validated schema changes file: '{}'".format(schema_changes_file))
-        return errors
+        if args.arguments:
+            schema_changes_files = [os.path.join(this_git_repo.migrations_dir(), args.arguments[0])]
+        else:
+            schema_changes_files = SchemaChanges.all_schema_changes_files(this_git_repo.migrations_dir())
+        all_errors = []
+        for schema_changes_file in schema_changes_files:
+            errors = SchemaChanges.validate(SchemaChanges.load(schema_changes_file))
+            if errors:
+                all_errors.append((schema_changes_file, errors))
+            else:
+                print("validated schema changes file: '{}'".format(schema_changes_file))
+        if all_errors:
+            raise ValueError("schema changes file(s) '{}' do not validate:\n{}".format(
+                [file for file, _ in all_errors], all_errors))
 
     @staticmethod
     def validate_schema(parser, args):

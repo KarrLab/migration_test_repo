@@ -1,4 +1,4 @@
-""" Add migrate CLI to migration_test_repo
+""" Add migrate CLI to migration_test_repo 
 
 :Author: Arthur Goldberg <Arthur.Goldberg@mssm.edu>
 :Date: 2019-05-23

@@ -11,17 +11,6 @@ from obj_model import (SlugAttribute, BooleanAttribute, StringAttribute, Integer
 import obj_model
 
 
-class GitMetadata(obj_model.Model):
-    url = StringAttribute()
-    branch = StringAttribute()
-    revision = StringAttribute()
-
-    class Meta(obj_model.Model.Meta):
-        attribute_order = ('url', 'branch', 'revision')
-        tabular_orientation = TabularOrientation.column
-_GIT_METADATA = (GitMetadata, ('url', 'branch', 'revision'))
-
-
 class Test(obj_model.Model):
     id = SlugAttribute()
     name = StringAttribute(default='test')

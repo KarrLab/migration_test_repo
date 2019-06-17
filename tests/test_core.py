@@ -30,13 +30,3 @@ class TestCore(unittest.TestCase):
         self.assertTrue(ref_1.published)
         self.assertEqual(ref_1, test_1.references[0])
         self.assertEqual(test_2.existing_attr, 3)
-
-    def test_git_metadata(self):
-        metadata_class, metadata_attrs = core._GIT_METADATA
-        self.assertEqual(core.GitMetadata, metadata_class)
-        self.assertEqual(set(metadata_class.Meta.attributes), set(metadata_attrs))
-
-        git_metadata = core.GitMetadata()
-        set_git_repo_metadata_from_path(git_metadata)
-        for attr in core.GitMetadata.Meta.attributes:
-            self.assertTrue(getattr(git_metadata, attr))

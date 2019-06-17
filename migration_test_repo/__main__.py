@@ -75,14 +75,9 @@ class Utils(object):
             references=[ref_1, ref_2]
         )
 
-        # make a git metadata Model
-        git_metadata = core.GitMetadata()
-        set_git_repo_metadata_from_path(git_metadata)
-
         fixtures_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'tests', 'fixtures'))
         fixture_file = os.path.join(fixtures_path, filename)
-        obj_model.io.Writer().run(fixture_file, [test_1, git_metadata],
-            models=[core.GitMetadata, core.Test, core.Reference])
+        obj_model.io.Writer().run(fixture_file, [test_1], models=[core.Test, core.Reference])
         print("Wrote obj_model data file: {}".format(fixture_file))
         return fixture_file
 

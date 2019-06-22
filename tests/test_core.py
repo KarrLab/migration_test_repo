@@ -8,7 +8,6 @@
 
 import unittest
 from migration_test_repo import core
-from obj_model.utils import set_git_repo_metadata_from_path
 
 
 class TestCore(unittest.TestCase):

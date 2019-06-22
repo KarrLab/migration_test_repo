@@ -11,7 +11,6 @@ import os
 from obj_model import migrate
 from obj_model.migrate import SchemaChanges
 import obj_model
-from obj_model.utils import set_git_repo_metadata_from_path
 from migration_test_repo import core
 
 

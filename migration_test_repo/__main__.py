@@ -83,7 +83,7 @@ class Utils(object):
     @staticmethod
     def make_data_schema_migration_conf_file(parser, args):
         this_git_repo = migrate.GitRepo(os.path.dirname(__file__), search_parent_directories=True)
-        data_schema_migration_conf_file = migrate.AutomatedMigration.make_template_config_file(
+        data_schema_migration_conf_file = migrate.DataSchemaMigration.make_template_config_file(
             this_git_repo, 'migration_test_repo')
         print("Wrote data-schema migration config file: {}".format(data_schema_migration_conf_file))
         return data_schema_migration_conf_file

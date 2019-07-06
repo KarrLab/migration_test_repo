@@ -14,7 +14,7 @@ import obj_model
 from migration_test_repo import core
 
 
-# todo: move or copy validate_schema_changes_file, make_schema_changes_template and make_automated_migration_config_file creation to
+# todo: move or copy validate_schema_changes_file, make_schema_changes_template and make_data_schema_migration_conf_file creation to
 # obj_model/migrate.py so they can be used by programmers doing migration
 class Utils(object):
 
@@ -81,12 +81,12 @@ class Utils(object):
         return fixture_file
 
     @staticmethod
-    def make_automated_migration_config_file(parser, args):
+    def make_data_schema_migration_conf_file(parser, args):
         this_git_repo = migrate.GitRepo(os.path.dirname(__file__), search_parent_directories=True)
-        automated_migration_config_file = migrate.AutomatedMigration.make_template_config_file(
+        data_schema_migration_conf_file = migrate.AutomatedMigration.make_template_config_file(
             this_git_repo, 'migration_test_repo')
-        print("Wrote automated migration config file: {}".format(automated_migration_config_file))
-        return automated_migration_config_file
+        print("Wrote data-schema migration config file: {}".format(data_schema_migration_conf_file))
+        return data_schema_migration_conf_file
 
     @staticmethod
     def not_supported(parser, args):
@@ -98,7 +98,7 @@ def main(parser, args):
         validate_schema_changes_file=Utils.validate_schema_changes_file,
         validate_schema=Utils.validate_schema,
         make_data_file=Utils.make_data_file,
-        make_automated_migration_config_file=Utils.make_automated_migration_config_file
+        make_data_schema_migration_conf_file=Utils.make_data_schema_migration_conf_file
     )
     if args.command not in exec_map:
         parser.error("'{}' not a known command".format(args.command))
@@ -108,7 +108,7 @@ def main(parser, args):
 if __name__ == '__main__':  # pragma: no cover
     parser = argparse.ArgumentParser(description='manage configuration files in this repo')
     parser.add_argument('command', choices=['make_schema_changes_template', 'validate_schema_changes_file',
-        'validate_schema', 'make_data_file', 'make_automated_migration_config_file'],
+        'validate_schema', 'make_data_file', 'make_data_schema_migration_conf_file'],
         help='operation to execute')
     # todo: describe each command
     parser.add_argument('arguments', nargs='*', help='arguments for the file being made')

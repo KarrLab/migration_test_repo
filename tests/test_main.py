@@ -95,10 +95,10 @@ class TestMain(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 main(parser, args)
 
-        # test make_automated_migration_config_file
+        # test make_data_schema_migration_conf_file
         # todo: fix this test: write the migration_config_file elsewhere so it doesn't overwrite the existing one
         '''
-        args = Namespace(arguments=[], command='make_automated_migration_config_file')
+        args = Namespace(arguments=[], command='make_data_schema_migration_conf_file')
         with capturer.CaptureOutput(relay=False):
             migration_config_file = main(parser, args)
         self.assertTrue(os.path.isfile(migration_config_file))

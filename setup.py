@@ -17,7 +17,7 @@ md = pkg_utils.get_package_metadata(dirname, name)
 setuptools.setup(
     name=name,
     version=md.version,
-    description="package for testing obj_model's migration feature",
+    description="package for testing obj_tables's migration feature",
     long_description=md.long_description,
     url="https://github.com/KarrLab/" + name,
     download_url='https://github.com/KarrLab/' + name,

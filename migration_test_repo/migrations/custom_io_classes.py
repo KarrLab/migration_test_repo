@@ -7,7 +7,7 @@
 """
 
 # if used, this file dynamically loads a Reader and/or Writer from the schema repo
-# if this file exists, it will be imported the obj_model migrator
+# if this file exists, it will be imported the obj_tables migrator
 # normally (as in wc_lang) this file will import a local Reader and/or Writer
-# but this example just uses obj_model's io
-from obj_model.io import Reader
+# but this example just uses obj_tables's io
+from obj_tables.io import Reader

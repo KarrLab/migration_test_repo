@@ -5,7 +5,7 @@
 
 # migration_test_repo
 
-This package is used to test the data migration feature of [obj_model](http://docs.karrlab.org/obj_model).
+This package is used to test the data migration feature of [obj_tables](http://docs.karrlab.org/obj_tables).
 
 ## Installation
 1. Install dependencies

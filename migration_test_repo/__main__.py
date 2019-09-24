@@ -8,14 +8,14 @@
 
 import argparse
 import os
-from obj_model import migrate
-from obj_model.migrate import SchemaChanges
-import obj_model
+from obj_tables import migrate
+from obj_tables.migrate import SchemaChanges
+import obj_tables
 from migration_test_repo import core
 
 
 # todo: move or copy validate_schema_changes_file, make_schema_changes_template and make_data_schema_migration_conf_file creation to
-# obj_model/migrate.py so they can be used by programmers doing migration
+# obj_tables/migrate.py so they can be used by programmers doing migration
 class Utils(object):
 
     @staticmethod
@@ -76,8 +76,8 @@ class Utils(object):
 
         fixtures_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'tests', 'fixtures'))
         fixture_file = os.path.join(fixtures_path, filename)
-        obj_model.io.Writer().run(fixture_file, [test_1], models=[core.Test, core.Reference])
-        print("Wrote obj_model data file: {}".format(fixture_file))
+        obj_tables.io.Writer().run(fixture_file, [test_1], models=[core.Test, core.Reference])
+        print("Wrote obj_tables data file: {}".format(fixture_file))
         return fixture_file
 
     @staticmethod

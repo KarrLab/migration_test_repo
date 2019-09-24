@@ -13,7 +13,7 @@ Run the following commands to install the latest version from GitHub::
 
     pip install git+https://github.com/KarrLab/log.git#egg=log
     pip install git+https://github.com/KarrLab/wc_utils.git#egg=wc_utils
-    pip install git+https://github.com/KarrLab/obj_model.git#egg=obj_model
+    pip install git+https://github.com/KarrLab/obj_tables.git#egg=obj_tables
     pip install git+https://github.com/KarrLab/migration_test_repo.git#egg=migration_test_repo
 
 Latest release From PyPI

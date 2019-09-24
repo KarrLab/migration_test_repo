@@ -8,7 +8,7 @@
 
 import unittest
 import os
-import obj_model
+import obj_tables
 from pathlib import Path
 from migration_test_repo import core
 

@@ -1,9 +1,6 @@
 # description
 README.rst
 
-# version
-include migration_test_repo/VERSION
-
 # license
 include LICENSE
 

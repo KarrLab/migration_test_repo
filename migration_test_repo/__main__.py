@@ -92,6 +92,7 @@ class Utils(object):
     def not_supported(parser, args):
         parser.error("command '{}' is not supported".format(args.command))
 
+
 def main(parser, args):
     exec_map = dict(
         make_schema_changes_template=Utils.make_schema_changes_template,
@@ -105,11 +106,12 @@ def main(parser, args):
     fun = exec_map[args.command]
     return fun(parser, args)
 
+
 if __name__ == '__main__':  # pragma: no cover
     parser = argparse.ArgumentParser(description='manage configuration files in this repo')
     parser.add_argument('command', choices=['make_schema_changes_template', 'validate_schema_changes_file',
-        'validate_schema', 'make_data_file', 'make_data_schema_migration_conf_file'],
-        help='operation to execute')
+                                            'validate_schema', 'make_data_file', 'make_data_schema_migration_conf_file'],
+                        help='operation to execute')
     # todo: describe each command
     parser.add_argument('arguments', nargs='*', help='arguments for the file being made')
     args = parser.parse_args()

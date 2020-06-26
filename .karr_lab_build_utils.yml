@@ -1,5 +1,9 @@
 static_analyses:
-  ignore_files: []
+  ignore_files:
+    - migration_test_repo/migrations/bad_custom_io_classes.py
+  ignore_unused_requirements: []
+  ignore_missing_requirements:
+    - configobj
 downstream_dependencies:
   - obj_tables
 email_notifications: []

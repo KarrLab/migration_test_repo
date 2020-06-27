@@ -1,1 +1,1 @@
-import no_such_package
+import no_such_package  # noqa: F401

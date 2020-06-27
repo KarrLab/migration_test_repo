@@ -18,8 +18,9 @@ from obj_tables_test_migration_repo.__main__ import main, Utils
 class TestMain(unittest.TestCase):
 
     def setUp(self):
-        repo_root = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
+        pass
         '''
+        repo_root = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
         self.good_schema_changes_file = os.path.join(repo_root,
             'migrations', 'schema_changes_2019-03-23-17-43-25_095bca3.yaml')
         self.bad_schema_changes_file = os.path.join(repo_root,
@@ -51,13 +52,13 @@ class TestMain(unittest.TestCase):
         os.remove(schema_changes_template_file)
 
         args = Namespace(arguments=[], command='validate_schema_changes_file')
-        with capturer.CaptureOutput(relay=False) as capture_output:
+        with capturer.CaptureOutput(relay=False):
             with self.assertRaises(SystemExit):
                 main(parser, args)
 
         '''
         args = Namespace(arguments=[self.good_schema_changes_file], command='validate_schema_changes_file')
-        with capturer.CaptureOutput(relay=False) as capture_output:
+        with capturer.CaptureOutput(relay=False):
             errors = main(parser, args)
         self.assertFalse(errors)
 
@@ -73,7 +74,7 @@ class TestMain(unittest.TestCase):
                 main(parser, args)
 
         args = Namespace(arguments=['fixtures/bad_schema.py'], command='validate_schema')
-        with capturer.CaptureOutput(relay=False) as capture_output:
+        with capturer.CaptureOutput(relay=False):
             with self.assertRaises(ValueError):
                 main(parser, args)
 
@@ -91,7 +92,7 @@ class TestMain(unittest.TestCase):
             os.remove(make_data_file)
         # filename is required
         args = Namespace(arguments=[], command='make_data_file')
-        with capturer.CaptureOutput(relay=False) as capture_output:
+        with capturer.CaptureOutput(relay=False):
             with self.assertRaises(SystemExit):
                 main(parser, args)
 

@@ -7,7 +7,7 @@
 """
 
 from obj_tables import (SlugAttribute, BooleanAttribute, StringAttribute, IntegerAttribute,
-                        ManyToManyAttribute, TableFormat)
+                        ManyToManyAttribute)
 import obj_tables
 
 

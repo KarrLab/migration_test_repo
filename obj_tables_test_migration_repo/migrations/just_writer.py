@@ -10,4 +10,4 @@
 # if this file exists, it will be imported the obj_tables migrator
 # normally (as in wc_lang) this file will import a local Reader and/or Writer
 # but this example just uses obj_tables's io
-from obj_tables.io import Writer
+from obj_tables.io import Writer  # noqa: F401

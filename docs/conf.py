@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'migration_test_repo'
+project = u'obj_tables_test_migration_repo'
 copyright = u'{}, Karr Lab'.format(datetime.datetime.now().year)
 author = u'Karr Lab'
 
@@ -58,7 +58,7 @@ author = u'Karr Lab'
 #
 # The short X.Y version.
 import re
-filename = os.path.join(os.path.dirname(__file__), "..", "migration_test_repo", "_version.py")
+filename = os.path.join(os.path.dirname(__file__), "..", "obj_tables_test_migration_repo", "_version.py")
 if os.path.isfile(filename):
     verstrline = open(filename, "rt").read()
     VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
@@ -148,9 +148,9 @@ def linkcode_resolve(domain, info):
         return None
     rel_filename = info['module'].replace('.', '/')
     if os.path.isfile(os.path.join(os.path.dirname(__file__), '..', rel_filename + '.py')):
-        return "https://github.com/KarrLab/migration_test_repo/blob/master/{}.py".format(rel_filename)
+        return "https://github.com/KarrLab/obj_tables_test_migration_repo/blob/master/{}.py".format(rel_filename)
     else:
-        return "https://github.com/KarrLab/migration_test_repo/blob/master/{}/__init__.py".format(rel_filename)
+        return "https://github.com/KarrLab/obj_tables_test_migration_repo/blob/master/{}/__init__.py".format(rel_filename)
 
 
 # -- napoleon options -----------------------------------------------------
@@ -187,7 +187,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-# html_title = u'migration_test_repo v0.0.1'
+# html_title = u'obj_tables_test_migration_repo v0.0.1'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -287,7 +287,7 @@ html_show_copyright = True
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'migration_test_repo-doc'
+htmlhelp_basename = 'obj_tables_test_migration_repo-doc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -313,7 +313,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'migration_test_repo.tex', u'migration_test_repo documentation',
+    (master_doc, 'obj_tables_test_migration_repo.tex', u'obj_tables_test_migration_repo documentation',
      u'Karr Lab', 'manual'),
 ]
 
@@ -355,7 +355,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'migration_test_repo', u'migration_test_repo documentation',
+    (master_doc, 'obj_tables_test_migration_repo', u'obj_tables_test_migration_repo documentation',
      [author], 1)
 ]
 
@@ -370,8 +370,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'migration_test_repo', u'migration_test_repo documentation',
-     author, 'migration_test_repo', 'One line description of project.',
+    (master_doc, 'obj_tables_test_migration_repo', u'obj_tables_test_migration_repo documentation',
+     author, 'obj_tables_test_migration_repo', 'One line description of project.',
      'Miscellaneous'),
 ]
 

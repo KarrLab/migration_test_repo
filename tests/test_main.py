@@ -12,7 +12,7 @@ import os
 import capturer
 
 from argparse import Namespace
-from migration_test_repo.__main__ import main, Utils
+from obj_tables_test_migration_repo.__main__ import main, Utils
 
 
 class TestMain(unittest.TestCase):
@@ -77,7 +77,7 @@ class TestMain(unittest.TestCase):
             with self.assertRaises(ValueError):
                 main(parser, args)
 
-        args = Namespace(arguments=['migration_test_repo/core.py'], command='validate_schema')
+        args = Namespace(arguments=['obj_tables_test_migration_repo/core.py'], command='validate_schema')
         with capturer.CaptureOutput(relay=False):
             rv = main(parser, args)
             self.assertIn('successfully imported', rv)

@@ -11,7 +11,7 @@ import os
 from obj_tables import migrate
 from obj_tables.migrate import SchemaChanges
 import obj_tables
-from migration_test_repo import core
+from obj_tables_test_migration_repo import core
 
 
 # todo: move or copy validate_schema_changes_file, make_schema_changes_template and make_data_schema_migration_conf_file creation to
@@ -84,7 +84,7 @@ class Utils(object):
     def make_data_schema_migration_conf_file(parser, args):
         this_git_repo = migrate.GitRepo(os.path.dirname(__file__), search_parent_directories=True)
         data_schema_migration_conf_file = migrate.DataSchemaMigration.make_template_config_file(
-            this_git_repo, 'migration_test_repo')
+            this_git_repo, 'obj_tables_test_migration_repo')
         print("Wrote data-schema migration config file: {}".format(data_schema_migration_conf_file))
         return data_schema_migration_conf_file
 

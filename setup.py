@@ -15,7 +15,7 @@ except (subprocess.CalledProcessError, AssertionError):
 import os
 import pkg_utils
 
-name = 'migration_test_repo'
+name = 'obj_tables_test_migration_repo'
 dirname = os.path.dirname(__file__)
 
 # get package metadata

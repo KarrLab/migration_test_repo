@@ -10,7 +10,7 @@ import unittest
 import os
 import obj_tables
 from pathlib import Path
-from migration_test_repo import core
+from obj_tables_test_migration_repo import core
 
 
 class TestIO(unittest.TestCase):

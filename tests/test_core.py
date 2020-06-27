@@ -1,4 +1,4 @@
-""" Test of migration_test_repo.core
+""" Test of obj_tables_test_migration_repo.core
 
 :Author: Arthur Goldberg <Arthur.Goldberg@mssm.edu>
 :Date: 2019-03-21
@@ -7,7 +7,7 @@
 """
 
 import unittest
-from migration_test_repo import core
+from obj_tables_test_migration_repo import core
 
 
 class TestCore(unittest.TestCase):

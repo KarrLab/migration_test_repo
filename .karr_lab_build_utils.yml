@@ -1,6 +1,6 @@
 static_analyses:
   ignore_files:
-    - migration_test_repo/migrations/bad_custom_io_classes.py
+    - obj_tables_test_migration_repo/migrations/bad_custom_io_classes.py
   ignore_unused_requirements: []
   ignore_missing_requirements:
     - configobj

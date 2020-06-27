@@ -1,5 +1,5 @@
-migration_test_repo documentation
-=================================
+obj_tables_test_migration_repo documentation
+============================================
 
 Contents
 --------
